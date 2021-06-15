@@ -1,0 +1,54 @@
+<template>
+
+    <lightning-card class="slds-col slds-size_1-of-3">
+        <lightning-input class="slds-m-left_medium slds-m-right_medium" type="text" id="text-input-id-1"
+            label="Inserisci Email" required="" onchange={changeInput}></lightning-input>
+
+        <lightning-button
+            class="slds-col slds-align_absolute-center slds-size_1-of-2 slds-m-bottom_medium slds-m-top_medium"
+            label="Mostra Camere/Spese" variant="brand" onclick={HandlevediTutto}></lightning-button>
+
+
+
+        <ul if:true={HandlevediTutto} class="slds-col slds-size_2-of-2 slds-m-around_medium">
+            <div class="slds-grid slds-gutters">
+                <div class="slds-col slds-align_absolute-center slds-text-align_left ">
+                    <span>Pratica n°</span>
+                </div>
+                <div class="slds-col slds-align_absolute-center slds-text-align_left">
+                    <span>Hotel</span>
+                </div>
+                <div class="slds-col slds-align_absolute-center slds-text-align_left">
+                    <span>Camera</span>
+                </div>
+                <div class="slds-col slds-align_absolute-center slds-text-align_left">
+                    <span>Totale Pagato</span>
+                </div>
+            </div>
+
+            <template for:each={pratica} for:item="prat">
+
+                <li key={prat.Id} >
+                    <div class="slds-grid slds-gutters slds-text-align_left">
+                        <div class="slds-col   slds-text-align_left">
+                            {prat.Name}
+                        </div>
+                        <div class="slds-col   slds-text-align_left">
+                            {prat.Hotel__r.Name}
+                        </div>
+                        <div class="slds-col   slds-text-align_left">
+                            {prat.Camera__r.Name}
+                        </div>
+                        <div class="slds-col   slds-text-align_left">
+                            {prat.Totale_Pagato__c} €
+                        </div>
+                    </div>
+                </li>
+
+            </template>
+
+
+        </ul>
+
+    </lightning-card>
+</template>

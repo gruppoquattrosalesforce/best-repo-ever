@@ -1,0 +1,61 @@
+<template>
+    <div class="slds-grid slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+            <lightning-card title="Ricerca Camere" icon-name="standard:account">
+                <lightning-combobox class="slds-m-left_medium slds-m-right_medium" required="" name="Hotel"
+                    label="Seleziona Hotel" options={hotelPicklist} onchange={changeInputHotel}>
+                </lightning-combobox>
+                <br>
+                <lightning-input class="slds-m-left_medium slds-m-right_medium" type="date" name="input4"
+                    label="Data Inizio" required onchange={changeInputDataInizio}></lightning-input>
+                <br>
+                <lightning-input class="slds-m-left_medium slds-m-right_medium" type="date" name="input5"
+                    label="Data Fine" required onchange={changeInputDataFine}></lightning-input>
+                <br>
+                <lightning-combobox class="slds-m-left_medium slds-m-right_medium" name="Tipologia"
+                    label="Seleziona Tipologia Camera" options={tipologiaPicklist} required
+                    onchange={changeInputTipologia}>
+                </lightning-combobox>
+                <br>
+                <lightning-combobox class="slds-m-left_medium slds-m-right_medium" name="Comfort"
+                    label="Seleziona Comfort Camera" options={comfortPicklist} required onchange={changeInputComfort}>
+                </lightning-combobox>
+                <br>
+                <lightning-input class="slds-m-left_medium slds-m-right_medium" name="Prezzo"
+                    label="Inserisci Prezzo a notte" required onchange={changeInputPrezzo}>
+                </lightning-input>
+                <br>
+                <br>
+                <lightning-button class="slds-col slds-align_absolute-center slds-size_1-of-2" label="Mostra Ricerca"
+                    variant="brand" onclick={HandleRicerca}></lightning-button>
+            </lightning-card>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+            <div class="slds-grid slds-gutters slds-align_center slds-m-right_medium">
+                <ul if:true={HandleRicerca} class="slds-col slds-size_2-of-2 slds-m-around_medium">
+                    <template for:each={camereLibere} for:item="cam">
+                        <li key={cam.Id} class="slds-text-align_center">
+                            <div class="slds-grid slds-gutters slds-m-vertical_small">
+                                <div class="slds-col slds-text-align_center slds-size_1-of-4">
+                                    Camera: {cam.Name}
+                                </div>
+                                <div class="slds-col slds-text-align_center slds-size_1-of-4">
+                                    Tipologia: {cam.Tipologia_Camera__c}
+                                </div>
+                                <div class="slds-col slds-text-align_center slds-size_1-of-4">
+                                    Comfort : {cam.Comfort__c}
+                                </div>
+                                <div class="slds-col slds-text-align_center slds-size_1-of-4">
+                                    Prezzo Stanza: {cam.Prezzo_a_Notte__c} €
+                                </div>
+                            </div>
+                            <div class="slds-col slds-text-align_center slds-m-vertical_medium">
+                                <img src={cam.link__c}></img>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </div>
+        </div>
+    </div>
+</template>
